@@ -14,6 +14,9 @@ This chatbot can:
 ### Demo (currently running on GCP)
 [http://34.123.140.86:8501/](http://34.123.140.86:8501/)
 
+https://github.com/user-attachments/assets/13f3268c-2656-4ece-81cd-93b429ce6818
+
+
 ---
 
 ### Running the project locally:
@@ -40,6 +43,8 @@ The app will run on [http://localhost:8000](http://localhost:8000).
 Alternatively, for running on GCP or any other server, use (port number can be changed):
 
 ```bash
+
+
 python3 -m chainlit run app.py --host 0.0.0.0 --port 8501
 ```
 
