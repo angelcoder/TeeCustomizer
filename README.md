@@ -48,3 +48,29 @@ Alternatively, for running on GCP or any other server, use (port number can be c
 python3 -m chainlit run app.py --host 0.0.0.0 --port 8501
 ```
 
+
+## Next Steps:
+
+1. **Experimenting with self-hosted LM**: using pre-trained models to understand user queries and create simple keyword-based matching for initial versions.
+
+2. **Creating intents and entities** (using RASA). For example:
+   - **Intents**: `ask_faq`, `request_support`, `check_product_availability`, `check_sizes`, `check_colors`, `ask_about_shipping`, `ask_about_delivery`...
+   - **Entities**: `product_name`, `size`, `color`...
+
+   This will solve an issue that you may encounter: when I write a message with double meaning, the customizations might get mixed up (e.g. I got style: female). But if we strict it down to intent/entity level, that could be avoided
+
+3. **Creating a dialog management**: rules about how the chatbot should respond to different user inputs (also RASA): 
+
+   - **Story**: User asks for sizes  
+     **Steps**:  
+       - `intent`: `check_sizes`  
+       - `action`: `action_check_sizes`
+
+4. **FAQ Handling**: I first tried to match user queries with the closest FAQ entries (I used  [SentenceTransformer](https://huggingface.co/sentence-transformers), however, that required prior intent classification. 
+5. **Evaluating chatbot performance**: E2E (End to End) benchmarking as suggested in [this paper](https://arxiv.org/pdf/2308.04624). measuring general performance indicators, like user satisfaction, conversation completion rate (possible after production); setting up analytics, creating tests for measuring the success of intent/entities/other extractions.
+
+If we are talking about  intent recognition, then this can be **precision**, **recall**, and **f1 score**. score for an ML model
+
+6. **Multilingual support** can be done via automatic language detection(langdetect, polyglot) and then their translations, or using Multilingual NLP Models ([mBERT](https://huggingface.co/google-bert/bert-base-multilingual-cased), [XLM-R](https://huggingface.co/FacebookAI/xlm-roberta-base)). I used gpt-4 (you can also play and see that it support ukrainian, I also experimented with spanish and estonian). I googled integration of translation APIs, but won’t it just increase the latency? I would go with the first few suggested approaches.
+
+
